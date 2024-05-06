@@ -121,6 +121,10 @@ class ModelArguments:
         default=False,
         metadata={"help": "For debugging purposes, print the status of the parameters in the model."},
     )
+    train_router: Optional[bool] = field(
+        default=False,
+        metadata={"help": "Whether or not to only train the router."},
+    ) 
 
     def __post_init__(self):
         self.compute_dtype = None

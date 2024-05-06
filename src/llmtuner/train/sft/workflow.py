@@ -19,6 +19,14 @@ if TYPE_CHECKING:
 
     from ...hparams import DataArguments, FinetuningArguments, GeneratingArguments, ModelArguments
 
+def freeze_backbone(model):
+    for name, param in model.named_parameters():
+        if 'gate' in name:
+            continue
+        else:
+            param.requires_grad = False
+            print(f'freeze {name}')
+    return model
 
 def run_sft(
     model_args: "ModelArguments",
@@ -29,6 +37,8 @@ def run_sft(
     callbacks: Optional[List["TrainerCallback"]] = None,
 ):
     model, tokenizer = load_model_and_tokenizer(model_args, finetuning_args, training_args.do_train)
+    # import pdb
+    # pdb.set_trace()
     dataset = get_dataset(tokenizer, model_args, data_args, training_args, stage="sft")
 
     if training_args.predict_with_generate:

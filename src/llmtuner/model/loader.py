@@ -111,6 +111,14 @@ def load_model_and_tokenizer(
     else:
         model.train()
 
+    if model_args.train_router:
+        for name, param in model.named_parameters():
+            if 'gate' in name:
+                continue
+            else:
+                param.requires_grad_(False)
+        logger.info("freeze all parameters except for routers.")
+    
     trainable_params, all_param = count_parameters(model)
     logger.info(
         "trainable params: {:d} || all params: {:d} || trainable%: {:.4f}".format(

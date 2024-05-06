@@ -111,13 +111,19 @@
     "hf_hub_url": "QingyiSi/Alpaca-CoT",
     "ms_hub_url": "AI-ModelScope/Alpaca-CoT"
   },
+  "gpt4all": {
+    "hf_hub_url": "nomic-ai/gpt4all-j-prompt-generations",
+    "columns": {
+      "prompt": "prompt",
+      "response": "response"
+    }
+  },
   "openorca": {
     "hf_hub_url": "Open-Orca/OpenOrca",
     "ms_hub_url": "AI-ModelScope/OpenOrca",
     "columns": {
       "prompt": "question",
-      "response": "response",
-      "system": "system_prompt"
+      "response": "response"
     }
   },
   "slimorca": {
